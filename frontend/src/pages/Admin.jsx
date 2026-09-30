@@ -6,6 +6,12 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('adminToken') || null);
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+
+  const showToast = (message, type = 'error') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: '', type }), 3000);
+  };
   
   // Login State
   const [password, setPassword] = useState('');
@@ -69,11 +75,12 @@ const Admin = () => {
       if (data.success) {
         fetchTestimonials();
         setNewTestimonial({ name: '', role: 'Patient', content: '', rating: 5 });
+        showToast('Testimonial published successfully!', 'success');
       } else {
-        alert('Failed to add: ' + data.error);
+        showToast('Failed to add: ' + data.error, 'error');
       }
     } catch (err) {
-      alert('Error adding testimonial.');
+      showToast('Error adding testimonial.', 'error');
     } finally {
       setIsAddingTestimonial(false);
     }
@@ -151,10 +158,10 @@ const Admin = () => {
       if (data.success) {
         setAppointments(appointments.map(apt => apt.id === id ? { ...apt, status: newStatus } : apt));
       } else {
-        alert('Failed to update status');
+        showToast('Failed to update status', 'error');
       }
     } catch (err) {
-      alert('Network error');
+      showToast('Network error', 'error');
     }
   };
 
@@ -179,10 +186,10 @@ const Admin = () => {
         }
         setDeleteTarget(null);
       } else {
-        alert('Failed to delete: ' + (data.error || 'Unknown error'));
+        showToast('Failed to delete: ' + (data.error || 'Unknown error'), 'error');
       }
     } catch (err) {
-      alert('Network error while deleting.');
+      showToast('Network error while deleting.', 'error');
     } finally {
       setIsDeleting(false);
     }
@@ -358,7 +365,7 @@ const Admin = () => {
                   <label className="block text-sm font-bold text-slate-700 mb-2">Confirm New Password</label>
                   <input type="password" placeholder="Confirm new password" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500/50" />
                 </div>
-                <button onClick={() => alert('Password update feature coming soon!')} className="bg-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-teal-700 transition-colors">
+                <button onClick={() => showToast('Password update feature coming soon!', 'success')} className="bg-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-teal-700 transition-colors">
                   Save Changes
                 </button>
               </div>
@@ -579,6 +586,18 @@ const Admin = () => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Toast Notification */}
+      {toast.show && (
+        <div className={`fixed bottom-6 right-6 px-6 py-4 rounded-2xl shadow-2xl text-white font-medium flex items-center gap-3 z-[100] transition-all ${toast.type === 'error' ? 'bg-red-500' : 'bg-teal-600'}`}>
+          {toast.type === 'error' ? (
+            <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          ) : (
+            <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          )}
+          {toast.message}
         </div>
       )}
     </div>

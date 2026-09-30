@@ -24,7 +24,7 @@ const testimonials = [
     name: 'Vikram Singh',
     type: 'Patient',
     rating: 5,
-    text: '"I got my braces treatment here and the results are fantastic. Thank you Smilix!"'
+    text: '"I got my braces treatment here and the results are fantastic. Thank you Smile Planet!"'
   },
   {
     name: 'Priya Nair',

@@ -1,9 +1,9 @@
-name = "smilix-backend"
+name = "smileplanet-backend"
 main = "src/index.js"
 compatibility_date = "2024-03-20"
 compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "smilix-db"
-database_id = "your-database-id-here" # Replace with real ID after creating D1 db
+database_name = "smileplanetdental"
+database_id = "29aace1a-0592-4cbb-9227-1ea5879c34f9"

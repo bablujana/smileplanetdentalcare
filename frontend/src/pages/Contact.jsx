@@ -188,19 +188,19 @@ const Contact = () => {
             <div className="bg-white rounded-[3rem] p-4 shadow-xl border border-primary/10 h-full min-h-[500px] flex flex-col relative overflow-hidden group">
               <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/0 transition-colors duration-500 pointer-events-none z-10 rounded-[3rem]"></div>
               
-              <div className="bg-surface p-6 rounded-[2rem] flex items-center gap-4 mb-4">
+              <a href="https://www.google.com/maps/dir//Smile+Planet+Dental+Care,+SCR+12,+BDA+Ln,+near+BDA+Office,+Unit+3,+Kharvela+Nagar,+Bhubaneswar,+Odisha+751001/@20.2702703,85.761778,7834m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3a19a7597c4369e9:0xa33c63e848bcbbeb!2m2!1d85.8354554!2d20.2757175?entry=ttu&g_ep=EgoyMDI2MDkyNy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="bg-surface p-6 rounded-[2rem] flex items-center gap-4 mb-4 hover:bg-primary/5 hover:scale-[1.02] transition-all cursor-pointer group">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                 </div>
                 <div>
                   <h3 className="font-black text-secondary">Find Us on the Map</h3>
-                  <p className="text-sm text-text-secondary font-medium">Get directions to Smile Planet Dental Care</p>
+                  <p className="text-sm text-text-secondary font-medium group-hover:text-primary transition-colors">Click here to get directions to Smile Planet Dental Care</p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex-grow rounded-[2rem] overflow-hidden relative">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14969.877209774783!2d85.824539!3d20.264771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7a3b9692325%3A0x8dd3db37ebf86958!2sKharavela%20Nagar%2C%20Bhubaneswar%2C%20Odisha!5e0!3m2!1sen!2sin!4v1692223400000!5m2!1sen!2sin" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.6109968471!2d85.83288047605991!3d20.275722513233827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7597c4369e9%3A0xa33c63e848bcbbeb!2sSmile%20Planet%20Dental%20Care!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 

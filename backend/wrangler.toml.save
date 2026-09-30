@@ -7,7 +7,3 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB"
 database_name = "smileplanetdental"
 database_id = "29aace1a-0592-4cbb-9227-1ea5879c34f9"
-
-[vars]
-ADMIN_PASSWORD = "password123"
-ADMIN_TOKEN = "admin_secret_token_123"

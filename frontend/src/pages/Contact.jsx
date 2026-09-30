@@ -1,3 +1,4 @@
+import API_BASE_URL from '../api';
 import React, { useState } from 'react';
 import { FadeInUp, FadeIn, StaggerContainer, StaggerItem } from '../components/AnimationWrapper';
 
@@ -22,7 +23,7 @@ const Contact = () => {
     setSubmitStatus({ type: '', message: '' });
     
     try {
-      const response = await fetch('http://localhost:8787/api/appointments', {
+      const response = await fetch(`${API_BASE_URL}/api/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

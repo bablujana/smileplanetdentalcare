@@ -16,9 +16,9 @@ app.get('/api/health', (c) => {
 app.post('/api/login', async (c) => {
   try {
     const body = await c.req.json();
-    if (body.password === 'smile2026') {
-      return c.json({ success: true, token: 'admin_secret_token_123' });
-    }
+   if (body.password === c.env.ADMIN_PASSWORD) {
+  return c.json({ success: true, token: c.env.ADMIN_TOKEN });
+}
     return c.json({ success: false, error: 'Invalid password' }, 401);
   } catch (err) {
     return c.json({ success: false, error: 'Invalid request' }, 400);
@@ -27,7 +27,7 @@ app.post('/api/login', async (c) => {
 
 app.get('/api/appointments', async (c) => {
   const auth = c.req.header('Authorization');
-  if (auth !== 'Bearer admin_secret_token_123') {
+  if (auth !== `Bearer ${c.env.ADMIN_TOKEN}`) {
     return c.json({ success: false, error: 'Unauthorized. Please login.' }, 401);
   }
   try {
@@ -67,7 +67,7 @@ app.post('/api/appointments', async (c) => {
 
 app.delete('/api/appointments/:id', async (c) => {
   const auth = c.req.header('Authorization');
-  if (auth !== 'Bearer admin_secret_token_123') {
+  if (auth !== `Bearer ${c.env.ADMIN_TOKEN}`) {
     return c.json({ success: false, error: 'Unauthorized' }, 401);
   }
   try {
@@ -87,7 +87,7 @@ app.delete('/api/appointments/:id', async (c) => {
 
 app.patch('/api/appointments/:id/status', async (c) => {
   const auth = c.req.header('Authorization');
-  if (auth !== 'Bearer admin_secret_token_123') {
+  if (auth !== `Bearer ${c.env.ADMIN_TOKEN}`) {
     return c.json({ success: false, error: 'Unauthorized' }, 401);
   }
   try {
@@ -124,7 +124,7 @@ app.get('/api/testimonials', async (c) => {
 // Create a new testimonial (Protected)
 app.post('/api/testimonials', async (c) => {
   const auth = c.req.header('Authorization');
-  if (auth !== 'Bearer admin_secret_token_123') return c.json({ success: false, error: 'Unauthorized' }, 401);
+  if (auth !== `Bearer ${c.env.ADMIN_TOKEN}`) return c.json({ success: false, error: 'Unauthorized' }, 401);
   
   try {
     const body = await c.req.json();
@@ -146,7 +146,7 @@ app.post('/api/testimonials', async (c) => {
 // Delete a testimonial (Protected)
 app.delete('/api/testimonials/:id', async (c) => {
   const auth = c.req.header('Authorization');
-  if (auth !== 'Bearer admin_secret_token_123') return c.json({ success: false, error: 'Unauthorized' }, 401);
+  if (auth !== `Bearer ${c.env.ADMIN_TOKEN}`) return c.json({ success: false, error: 'Unauthorized' }, 401);
   
   try {
     const id = c.req.param('id');

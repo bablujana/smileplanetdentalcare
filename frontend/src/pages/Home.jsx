@@ -1,3 +1,4 @@
+import API_BASE_URL from '../api';
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ import { FadeInUp, FadeIn, StaggerContainer, StaggerItem, SlideInLeft, SlideInRi
 const Home = () => {
   const [dbTestimonials, setDbTestimonials] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:8787/api/testimonials')
+    fetch(`${API_BASE_URL}/api/testimonials`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data.length > 0) {

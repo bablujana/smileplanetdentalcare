@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../api';
 
 const Admin = () => {
   const [appointments, setAppointments] = useState([]);
@@ -43,7 +44,7 @@ const Admin = () => {
   const fetchTestimonials = async () => {
     try {
       setLoadingTestimonials(true);
-      const res = await fetch('http://localhost:8787/api/testimonials');
+      const res = await fetch(`${API_BASE_URL}/api/testimonials`);
       const data = await res.json();
       if (data.success) {
         setTestimonials(data.data);
@@ -59,7 +60,7 @@ const Admin = () => {
     e.preventDefault();
     setIsAddingTestimonial(true);
     try {
-      const res = await fetch('http://localhost:8787/api/testimonials', {
+      const res = await fetch(`${API_BASE_URL}/api/testimonials`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(newTestimonial)
@@ -88,7 +89,7 @@ const Admin = () => {
     setIsLoggingIn(true);
     setLoginError('');
     try {
-      const res = await fetch('http://localhost:8787/api/login', {
+      const res = await fetch(`${API_BASE_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })
@@ -116,7 +117,7 @@ const Admin = () => {
   const fetchAppointments = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:8787/api/appointments', {
+      const res = await fetch(`${API_BASE_URL}/api/appointments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -138,7 +139,7 @@ const Admin = () => {
 
   const toggleStatus = async (id, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:8787/api/appointments/${id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/appointments/${id}/status`, {
         method: 'PATCH',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -162,7 +163,7 @@ const Admin = () => {
     setIsDeleting(true);
     try {
       const endpoint = deleteTarget.type === 'appointment' ? 'appointments' : 'testimonials';
-      const res = await fetch(`http://localhost:8787/api/${endpoint}/${deleteTarget.id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/${endpoint}/${deleteTarget.id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
